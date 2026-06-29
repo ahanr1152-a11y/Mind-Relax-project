@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MindCare - AI Wellness Companion</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  background: #f0f8ff;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+header {
+  background: #4682B4;
+  color: white;
+  padding: 20px;
+}
+
+section {
+  margin: 20px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #fff;
+}
+
+button {
+  background: #4682B4;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+button:hover {
+  background: #2E5984;
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>💙 MindCare</h1>
+    <p>Your mental wellness buddy</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>How are you feeling today?</h2>
+      <select id="mood">
+        <option value="happy">😊 Happy</option>
+        <option value="sad">😔 Sad</option>
+        <option value="stressed">😣 Stressed</option>
+        <option value="motivated">💪 Motivated</option>
+      </select>
+      <button onclick="getPrompt()">Get Suggestion</button>
+      <p id="prompt"></p>
+    </section>
+
+    <section>
+      <h2>Quick Breathing Exercise</h2>
+      <button onclick="startBreathing()">Start Exercise</button>
+      <p id="exercise"></p>
+    </section>
+
+    <section>
+      <h2>Daily Motivation</h2>
+      <button onclick="getQuote()">Show Quote</button>
+      <p id="quote"></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Made for Buildathon Submission</p>
+  </footer>
+
+  <script>
+    function getPrompt() {
+  const mood = document.getElementById("mood").value;
+  let suggestion = "";
+
+  switch(mood) {
+    case "happy":
+      suggestion = "Keep spreading positivity! Write down 3 things you're grateful for.";
+      break;
+    case "sad":
+      suggestion = "Take a short walk, listen to your favorite song, and talk to a friend.";
+      break;
+    case "stressed":
+      suggestion = "Try deep breathing for 1 minute. Focus on slow inhales and exhales.";
+      break;
+    case "motivated":
+      suggestion = "Channel your energy! Start a small task you've been delaying.";
+      break;
+  }
+
+  document.getElementById("prompt").innerText = suggestion;
+}
+
+function startBreathing() {
+  let steps = ["Inhale deeply...", "Hold your breath...", "Exhale slowly..."];
+  let i = 0;
+  const exercise = document.getElementById("exercise");
+  exercise.innerText = steps[i];
+  let interval = setInterval(() => {
+    i++;
+    if (i < steps.length) {
+      exercise.innerText = steps[i];
+    } else {
+      clearInterval(interval);
+      exercise.innerText = "Repeat this cycle 3 times for relaxation.";
+    }
+  }, 3000);
+}
+
+function getQuote() {
+  const quotes = [
+    "Believe you can and you're halfway there.",
+    "Every day is a new beginning.",
+    "Small steps lead to big changes.",
+    "Your mind is powerful — use it wisely."
+  ];
+  const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+  document.getElementById("quote").innerText = randomQuote;
+}
+
+  </script>
+</body>
+</html>
